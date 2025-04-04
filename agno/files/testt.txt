@@ -1,0 +1,3 @@
+
+
+I will give you a dictionary that conforms to this model. Use the information in the dictionary to write a complete blog post. Make sure the blog post is well-written, informative, and engaging. Keep the blog post relatively short (around 200-300 words).  Pay attention to the 'description' fields in the Pydantic model to understand the purpose of each field. Do not include the code or the dictionary directly in the blog post. Just use the information to create a blog. Do not add any additional sections or information that is not directly derived from the provided dictionary."
