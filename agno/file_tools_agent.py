@@ -32,11 +32,11 @@ pprint_run_response(response, markdown=True)
 # pprint_run_response(response_stream, markdown=True)
 
 
-# 1st method 
-result = LocalFileSystemTools(target_directory=path)
-result.write_file(content=response.content,filename="test.txt")
+# # 1st method 
+# result = LocalFileSystemTools(target_directory=path)
+# result.write_file(content=response.content,filename="test.txt")
 
-# 2nd method
-result = FileTools(path,save_files=True)
-result.save_file(contents=response.content,file_name="testt.txt")
+# # 2nd method
+# result = FileTools(path,save_files=True)
+# result.save_file(contents=response.content,file_name="testt.txt")
 
