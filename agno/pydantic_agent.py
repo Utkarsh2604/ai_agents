@@ -8,12 +8,9 @@ from typing import List
 
 load_dotenv()
 
-from agno.agent import Agent, RunResponse
+from agno.agent import Agent
 from agno.utils.pprint import pprint_run_response
 from agno.models.google import Gemini
-from agno.tools.file import FileTools
-from agno.tools.local_file_system import LocalFileSystemTools
-
 path = Path.cwd().joinpath("files")
 
 
@@ -29,25 +26,27 @@ class Blog(BaseModel):
 # Agent that uses structured outputs
 blog_agent = Agent(
     model=Gemini(id="gemini-2.0-flash-exp",api_key=os.getenv("GOOGLE_API_KEY")),
-    tools=[LocalFileSystemTools(target_directory=path),FileTools(Path(path),save_files=True)], 
     show_tool_calls=True,
-    debug_mode=True,
+    debug_mode=False,
     telemetry=False,
     monitoring=False,
     description="You write blogs for a living. You are an expert in writing blogs. You can write blogs on any topic. You can also write blogs in different styles. You can also write blogs in different formats. You can also write blogs in different languages.",
     response_model=Blog,
     add_history_to_messages=True,
     add_datetime_to_instructions=True,
-    use_json_mode=True,
+    # use_json_mode=True,
+    save_response_to_file="./files/blog_response.json",
+    
 )
 
 
-response = blog_agent.run("Latest Trends In Generative AI")
+response =  blog_agent.run("Latest Trends In Generative AI")
+
+pprint_run_response(response, markdown=True)
 
 
-# #1st method 
-result = LocalFileSystemTools(target_directory=path)
-result.write_file(content=str(response.content))
+print(response.metrics)
+
 
 
 
